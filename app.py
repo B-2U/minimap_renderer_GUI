@@ -353,6 +353,9 @@ if __name__ == "__main__":
     if not is_installed("flet"):
         run_pip("flet", "flet")
 
+    if not is_installed("requests"):
+        run_pip("requests", "requests")
+
     from renderer.render import Renderer  # type: ignore
     from replay_parser import ReplayParser  # type: ignore
     from renderer.utils import LOGGER  # type: ignore
