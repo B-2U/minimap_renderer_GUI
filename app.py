@@ -1,3 +1,8 @@
+try:
+    # in the first installation it might fail?
+    import flet as ft
+except:
+    pass
 import subprocess
 import sys
 import os
@@ -6,6 +11,7 @@ import importlib.util
 from pathlib import Path
 import webbrowser
 import time
+import requests
 
 python = sys.executable
 
@@ -59,7 +65,7 @@ def run_pip(pkg, desc=None, args=""):
     )
 
 
-def main(page):
+def main(page: ft.Page):
     # rendering
     def on_dialog_result(e: ft.FilePickerResultEvent):
         if not e.files:
@@ -151,14 +157,45 @@ def main(page):
         )
         body.controls = [upload_container]
         page.snack_bar = ft.SnackBar(
-            ft.Text("Updated succesfully!"), action="Alright!", bgcolor="green"
+            ft.Text(
+                f"Updated succesfully!, Current supported version: {get_installed_version()}"
+            ),
+            action="Alright!",
+            bgcolor="green",
         )
         page.snack_bar.open = True
+        version_text.value = f"Installed version: {get_installed_version()}"
         page.update()
+
+    # check local files
+    def get_installed_version() -> str:
+        path = Path(os.getcwd()).joinpath(
+            "renderer_venv/Lib/site-packages/renderer/versions/"
+        )
+        versions = [p for p in path.iterdir() if p.is_dir() and p.name != "__pycache__"]
+        version = versions[-1].name.replace("_", ".")
+        return version
+
+    # check repo
+    def get_repo_version() -> str:
+        api_url = "https://api.github.com/repos/WoWs-Builder-Team/minimap_renderer/contents/src/replay_unpack/clients/wows/versions"
+
+        versions = [
+            p
+            for p in requests.get(api_url).json()
+            if p["type"] == "dir" and p["name"] != "__pycache__"
+        ]
+        version = versions[-1]["name"].replace("_", ".")
+        return version
 
     def page_resize(e):
         body.height = page.window_height - 120
         body.update()
+
+    version_text = ft.Text(
+        f"Installed version: {get_installed_version()}",
+        style=ft.TextThemeStyle.BODY_SMALL,
+    )
 
     # reading settings
     if page.client_storage.contains_key("output_path"):
@@ -264,6 +301,11 @@ def main(page):
                             style=ft.ButtonStyle(
                                 shape=buttons.RoundedRectangleBorder(radius=2),
                             ),
+                        ),
+                        version_text,
+                        ft.Text(
+                            f"Latest version: {get_repo_version()}",
+                            style=ft.TextThemeStyle.BODY_SMALL,
                         ),
                     ]
                 )
