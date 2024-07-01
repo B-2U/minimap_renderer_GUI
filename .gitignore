@@ -1,2 +1,5 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
 output_videos/
 renderer_venv/
