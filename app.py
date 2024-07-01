@@ -1,6 +1,7 @@
 try:
     # in the first installation it might fail?
     import flet as ft
+    import requests
 except:
     pass
 import subprocess
@@ -11,7 +12,6 @@ import importlib.util
 from pathlib import Path
 import webbrowser
 import time
-import requests
 
 python = sys.executable
 
@@ -362,5 +362,6 @@ if __name__ == "__main__":
 
     import flet as ft
     from flet import buttons
+    import requests
 
     ft.app(target=main)
