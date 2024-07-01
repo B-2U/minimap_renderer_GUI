@@ -65,7 +65,7 @@ def run_pip(pkg, desc=None, args=""):
     )
 
 
-def main(page: ft.Page):
+def main(page):
     # rendering
     def on_dialog_result(e: ft.FilePickerResultEvent):
         if not e.files:
