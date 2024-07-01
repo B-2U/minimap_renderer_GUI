@@ -1,12 +1,11 @@
-import flet as ft
-
-import requests
 import sys
 import os
 from pathlib import Path
 import webbrowser
 import time
 
+import flet as ft  # type: ignore
+import requests  # type: ignore
 from renderer.render import Renderer  # type: ignore
 from replay_parser import ReplayParser  # type: ignore
 from renderer.utils import LOGGER  # type: ignore

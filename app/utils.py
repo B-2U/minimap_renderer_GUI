@@ -1,4 +1,4 @@
-import importlib
+from importlib.util import find_spec
 import os
 import subprocess
 import sys
@@ -30,7 +30,7 @@ stderr: {result.stderr.decode(encoding="utf8", errors="ignore") if len(result.st
 
 def is_installed(package):
     try:
-        spec = importlib.util.find_spec(package)
+        spec = find_spec(package)
     except ModuleNotFoundError:
         return False
 

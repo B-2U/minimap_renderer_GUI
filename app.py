@@ -15,7 +15,7 @@ if __name__ == "__main__":
     if not is_installed("requests"):
         run_pip("requests", "requests")
 
-    import flet as ft
+    import flet as ft  # type: ignore
     from app.main import main
 
     ft.app(target=main)
