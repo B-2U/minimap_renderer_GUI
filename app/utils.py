@@ -10,8 +10,6 @@ def run(command, desc=None, errdesc=None, custom_env=None):
 
     result = subprocess.run(
         command,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
         shell=True,
         env=os.environ if custom_env is None else custom_env,
     )
