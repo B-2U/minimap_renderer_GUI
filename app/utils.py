@@ -23,8 +23,6 @@ stderr: {result.stderr.decode(encoding="utf8", errors="ignore") if len(result.st
 """
         raise RuntimeError(message)
 
-    return result.stdout.decode(encoding="utf8", errors="ignore")
-
 
 def is_installed(package):
     try:
@@ -36,7 +34,7 @@ def is_installed(package):
 
 
 def run_pip_from_git(url=None, desc=None, args=""):
-    return run(
+    run(
         f"python -m pip install git+{url} {args}",
         desc=f"Installing {desc}",
         errdesc=f"Couldn't install {desc}",
@@ -45,7 +43,7 @@ def run_pip_from_git(url=None, desc=None, args=""):
 
 def run_pip(pkg, desc=None, args=""):
     python = sys.executable
-    return run(
+    run(
         f'"{python}" -m pip install {pkg} {args}',
         desc=f"Installing {desc}",
         errdesc=f"Couldn't install {desc}",
