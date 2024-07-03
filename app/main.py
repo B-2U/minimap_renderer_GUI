@@ -15,7 +15,7 @@ from app.utils import *
 python = sys.executable
 
 
-def main(page):
+def main(page: ft.Page):
     # rendering
     def on_dialog_result(e: ft.FilePickerResultEvent):
         if not e.files:
