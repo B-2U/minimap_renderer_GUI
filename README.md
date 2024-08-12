@@ -11,4 +11,5 @@ Just a easy GUI for [minimap_renderer](https://github.com/WoWs-Builder-Team/mini
 
 
 # how to use it
-download the files, then click `run.bat`
+git clone the repo, and `git pull` if update needed (**Suggested**)  
+or just download the files, then click `run.bat`
