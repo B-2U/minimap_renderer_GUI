@@ -15,6 +15,9 @@ if __name__ == "__main__":
     if not is_installed("requests"):
         run_pip("requests", "requests")
 
+    if not is_installed("langdetect"):
+        run_pip("langdetect", "langdetect")
+
     import flet as ft  # type: ignore
     from app.main import main
 
