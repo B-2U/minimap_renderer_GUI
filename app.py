@@ -10,13 +10,16 @@ if __name__ == "__main__":
         )
 
     if not is_installed("flet"):
-        run_pip("flet", "flet")
+        run_pip("flet")
 
     if not is_installed("requests"):
-        run_pip("requests", "requests")
+        run_pip("requests")
 
     if not is_installed("langdetect"):
-        run_pip("langdetect", "langdetect")
+        run_pip("langdetect")
+
+    if not is_installed("hanzidentifier"):
+        run_pip("hanzidentifier")
 
     import flet as ft  # type: ignore
     from app.main import main

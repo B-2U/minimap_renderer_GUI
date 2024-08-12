@@ -43,6 +43,8 @@ def run_pip_from_git(url=None, desc=None, args=""):
 
 def run_pip(pkg, desc=None, args=""):
     python = sys.executable
+    if desc is None:
+        desc = pkg
     run(
         f'"{python}" -m pip install {pkg} {args}',
         desc=f"Installing {desc}",
